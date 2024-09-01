@@ -15,9 +15,9 @@ public class ProductsController(IProductRepository repo) : ControllerBase
     
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+    public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
     {
-        return Ok(repo.GetProductsAsync());
+        return Ok(await repo.GetProductsAsync());
     }
     [HttpGet("id:int")] //api/products/2
     public async Task<ActionResult<Product>> GetProduct(int id)
@@ -70,6 +70,7 @@ public class ProductsController(IProductRepository repo) : ControllerBase
        {
         return NoContent();
        }
+       return BadRequest("Problem deleting the product");
 
     }
 
