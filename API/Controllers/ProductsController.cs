@@ -74,6 +74,17 @@ public class ProductsController(IProductRepository repo) : ControllerBase
 
     }
 
+    [HttpGet("brands")]
+    public async Task<ActionResult<ReadOnlyList<string>>> GetBrands()
+    {
+        return Ok(await repo.GetBrandsAsync());
+    }
+
+    [HttpGet("types")]
+    public async Task<ActionResult<ReadOnlyList<string>>> GetTypes()
+    {
+        return Ok(await repo.TypesAsync());
+    }
     private bool ProductExists(int id)
     {
         return repo.ProductExists(id);
