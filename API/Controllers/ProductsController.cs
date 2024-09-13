@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
@@ -75,15 +76,15 @@ public class ProductsController(IProductRepository repo) : ControllerBase
     }
 
     [HttpGet("brands")]
-    public async Task<ActionResult<ReadOnlyList<string>>> GetBrands()
+    public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
     {
         return Ok(await repo.GetBrandsAsync());
     }
 
     [HttpGet("types")]
-    public async Task<ActionResult<ReadOnlyList<string>>> GetTypes()
+    public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
     {
-        return Ok(await repo.TypesAsync());
+        return Ok(await repo.GetTypesAsync());
     }
     private bool ProductExists(int id)
     {
