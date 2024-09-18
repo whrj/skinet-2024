@@ -28,16 +28,17 @@ public class GenericRepository<T>(StoreContext context) : IGenericRepository<T?>
 
     public void Remove(T entity)
     {
-        throw new NotImplementedException();
+        context.Set<T>().Remove(entity);
     }
 
     public Task<bool> SaveAllAsync()
     {
-        throw new NotImplementedException();
+        return await context.SaveChangesAsync() > 0;
     }
 
     public void Update(T entity)
     {
-        throw new NotImplementedException();
+        context.Set<T>().Attach(entity);
+        context.Entry(entity).State = EntityState.Modified;
     }
 }
