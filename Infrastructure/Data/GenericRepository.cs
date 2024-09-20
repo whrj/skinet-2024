@@ -36,6 +36,10 @@ public class GenericRepository<T>(StoreContext context) : IGenericRepository<T> 
         return await context.SaveChangesAsync() > 0;
     }
 
+    public Task<bool?> SaveAllAsync(T entity)
+    {
+        throw new NotImplementedException();
+    }
 
     public void Update(T entity)
     {
