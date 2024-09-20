@@ -20,7 +20,7 @@ public class ProductsController(IGenericRepository<Product> repo) : ControllerBa
     {
         return Ok(await repo.ListAllAsync());
     }
-    [HttpGet("id:int")] //api/products/2
+    [HttpGet("{id:int}")] //api/products/2
     public async Task<ActionResult<Product>> GetProduct(int id)
     {
         var product = await repo.GetByIdAsync(id);
